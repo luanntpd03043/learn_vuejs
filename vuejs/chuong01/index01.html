@@ -21,54 +21,49 @@
                 qui.</p>
         </div>
         <div id="app">
-            <div class="cart">Giỏ hàng (0)</div>
+            <div class="cart">Giỏ hàng ({{cardNumber}})</div>
             <div class="product">
                 <div class="product-image">
                     <div class="image">
-                        <img src="" alt="">
+                        <img v-bind:src="getProduct.image" alt="">
                     </div>
                 </div>
                 <div class="product-content">
                     <h3 class="title">
-                    <a href=""></a>
+                        <a v-bind:href="url" v-bind:target="target">{{ title }}</a>
                     </h3>
                     <p class="brand">Thương hiệu: No brand</p>
-                    <p class="quantity">Còn lại: 0 Sản phẩm</p>
-                    <p class="quantity">Sản phẩm đã hết hàng</p>
+                    <p class="quantity" v-if="getProduct.quantity > 0">Còn lại: {{getProduct.quantity}} Sản phẩm</p>
+                    <p class="quantity" v-else>Sản phẩm đã hết hàng</p>
 
                     <div class="wrapper-price">
-                        <div class="final-price"></div>
-                        <div class="origin-price"></div>
-                        <div class="sale-price">-10%</div>
+                        <div class="final-price">{{formatFinalPrice}}</div>
+                        <div class="origin-price">{{ formatOriginalPrice }}</div>
+                        <div class="sale-price">-{{sale * 100}}%</div>
                     </div>
                     <div class="wrapper-color">
-                        <div class="text">Màu sắc</div>
+                        <div class="text">Màu sắc:</div>
                         <div class="list-color">
-                            <p class="color-text"></p>
+                            <p class="color-text">{{getProduct.textColor}}</p>
                             <ul>
-                                <li></li>
-                                <!-- <li><img src="./images/blue.jpg" alt="color"></li> -->
-                                <!-- <li><img src="./images/red.jpg" alt="color"></li> -->
+                                <li v-for="(item, index) in listProductDetail" v-on:click="handleClickColor($event,index)" v-bind:class="classActive(index)" v-bind:key="index">
+                                    <img v-bind:src="item.image" v-bind:alt="item.textColor">
+                                </li>
                             </ul>
                         </div>
                     </div>
-                    <button 
-                        v-on:click="handleAddToCart"
-                        class="add-to-cart">Add to cart</button>
+                    <button class="add-to-cart" v-on:click="addToCard">Add to cart</button>
                 </div>
                 
             </div>
             <div class="description">
                 <ul class="extra-info">
-                    <li></li>
-                    <!-- <li>Thoát mồ hôi tốt</li>
-                    <li>Áo thun cổ tròn thể thao Hiye chuyên được may từ chất liệu nilon thoáng mát</li>
-                    <li>Kết hợp thêm sợi thun tạo độ co giãn giúp người tiêu dùng thoải mái khi mặc</li>
-                    <li>Chất liệu: polyester và thun</li> -->
+                    <li v-for="(item, index) in listDesc">{{item}}</li>
                 </ul>
                 <h2>Chất liệu bền chặt&nbsp;</h2>
                 <!-- v-html -->
                
+                <!-- mới hiểu đc là html còn k sẽ hieru là string -->
                 <div v-html="description"></div>
             </div>
                 
