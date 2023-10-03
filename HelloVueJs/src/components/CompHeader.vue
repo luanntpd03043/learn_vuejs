@@ -1,5 +1,8 @@
 <template>
     <header>
+      <ul>
+        <li v-for="user in listUser" v-bind:key="user.id">{{ user.email }}</li>
+      </ul>
       <h1>
         {{ title }} <br>
         <button v-on:click="changeTitleHeader">Thay doi title tu CompHeader.vue</button>
@@ -14,6 +17,10 @@
         title: {
             type: String,
             default: 'Gia tri mac dinh'
+        },
+        listUser:{
+          type: Array,
+          default: []
         }
       },
       data(){

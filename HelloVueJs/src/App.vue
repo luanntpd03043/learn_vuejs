@@ -3,9 +3,13 @@
 		<div class="container">
 			<button v-on:click="title = 'Hoc vuejs'">Thay doi title tu Component App.vue</button>
 			<comp-header 
+			    v-bind:listUser="listUser"
 				v-on:changeTitleEvent="handleChangeTitle" 
 				v-bind:title="title"/>
-			<list-user v-bind:listUser="listUser"/>
+			<list-user 
+			v-bind:listUser="listUser"
+			v-on:deleteUserEvent="handleDeleteUser"
+			/>
 			<comp-footer v-bind:title="title" />
 		</div>
 	</div>
@@ -67,6 +71,19 @@ export default {
 			// this.title = 'Học Front End';
 			this.title = data.title;
 			console.log('handleChangeTitle đc gọi sau khi kích hoạt thành công', data);
+		},
+		handleDeleteUser(data){
+			console.log('handleDeleteUser trong app.vue', data);
+			var indexDelete = -1;
+			this.listUser.forEach((el,index) => {
+				if(el.id === data.id){
+					indexDelete = index
+				}
+			});
+
+			if(indexDelete != -1){
+				this.listUser.splice(indexDelete, 1);
+			}
 		}
 	}
 }
