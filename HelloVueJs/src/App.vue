@@ -11,6 +11,10 @@
 			v-on:deleteUserEvent="handleDeleteUser"
 			/>
 			<comp-footer v-bind:title="title" />
+
+			<demo-ref/>
+
+			<demo-slot/>
 		</div>
 	</div>
 </template>
@@ -22,6 +26,8 @@
 import CompHeader from './components/CompHeader.vue';
 import CompFooter from './components/CompFooter.vue';
 import ListUser from './components/ListUser.vue';
+import DemoRef from './components/DemoRef.vue';
+import DemoSlot from './components/DemoSlot.vue';
 export default {
 	name: 'app',
 	data () {
@@ -64,7 +70,9 @@ export default {
 	components: {
 		CompHeader,
 		CompFooter,
-		ListUser
+		ListUser,
+		DemoRef,
+		DemoSlot
 	},
 	methods:{
 		handleChangeTitle(data){
