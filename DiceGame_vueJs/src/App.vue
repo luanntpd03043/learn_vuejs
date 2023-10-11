@@ -6,9 +6,14 @@
             v-bind:scorePlayer="scorePlayer"
             v-bind:currentScore="currentScore"
             v-bind:activePlayer="activePlayer"
+            v-bind:isWinner="isWinner"
         />
 
         <controls
+        v-bind:isPlaying="isPlaying"
+        v-bind:finalScore="finalScore"
+        v-on:handleChangeFinalScore="handleChangeFinalScore"
+        v-on:handleHoldScore="holdScore"
         v-on:handleRollDice="handleRollDice"
         v-on:handleNewGame="handleNewGame"
         />
@@ -37,9 +42,10 @@ export default {
         isPlaying: false,
         isOpenPopup: false,
         activePlayer: 0, //Người chơi hiện tại
-        currentScore: 30,
-        scorePlayer: [13,30],
-        dices: [1,5]
+        currentScore: 0,
+        scorePlayer: [0,0],
+        dices: [1,5],
+        finalScore: 10
     }
   },
   components: {
@@ -48,7 +54,49 @@ export default {
     Dices,
     Popup
   },
+  computed:{
+    isWinner(){
+      let {scorePlayer, finalScore} = this;
+      if(scorePlayer[0] >= finalScore || scorePlayer[1] > finalScore){
+        this.isPlaying = false;
+        return true
+      }
+      return false;
+    }
+  },
   methods:{
+    handleChangeFinalScore(e){
+      var number = parseInt(e.target.value);
+
+      if(isNaN(number)){
+        this.finalScore = ''
+      }else{
+        this.finalScore = number
+      }
+    },
+    holdScore(){
+        if(this.isPlaying){
+          let {scorePlayer,activePlayer,currentScore} = this;
+          let scoreOld = scorePlayer[activePlayer];
+
+          // Cách 1
+          // let cloneScorePlayer = [...scorePlayer];
+          // cloneScorePlayer[activePlayer] = scoreOld + currentScore;
+          // this.scorePlayer = cloneScorePlayer;
+
+          // Cách 2
+          // $set thay đổi thuộc tính trong mảng
+          this.$set(this.scorePlayer, activePlayer, scoreOld + currentScore);
+          
+          if(!this.isWinner){
+            this.nextPlayer();
+          }
+
+        }else{
+            alert('Vui lòng click NewGame!')
+        }
+    },
+
     nextPlayer(){
         this.activePlayer = this.activePlayer === 0 ? 1 : 0;
         this.currentScore = 0;
