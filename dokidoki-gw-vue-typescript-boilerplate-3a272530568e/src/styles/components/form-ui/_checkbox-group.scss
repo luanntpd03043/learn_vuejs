@@ -1,0 +1,54 @@
+.el-checkbox-group {
+  display: flex;
+  gap: 8px;
+
+  &--vertical {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &--horizontal {
+    flex-direction: column;
+  }
+
+  .el-checkbox {
+    margin-right: 0;
+
+    &__inner {
+      &:after {
+        top: 7px;
+      }
+    }
+
+    &__label {
+      .has-circle {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        @each $color, $value in $colors {
+          &--#{$color} {
+            width: 12px;
+            height: 12px;
+            display: inline-flex;
+            border-radius: 4px;
+            background: $value;
+          }
+        }
+      }
+    }
+
+    &--large {
+      &.is-bordered,
+      :not(.is-bordered) {
+        .el-checkbox {
+          &__inner {
+            &:after {
+              top: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

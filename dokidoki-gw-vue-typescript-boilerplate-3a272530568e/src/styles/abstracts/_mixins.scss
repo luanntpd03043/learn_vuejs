@@ -1,0 +1,118 @@
+@mixin font-icon($icon-name, $size: 16px, $style: normal) {
+  content: map-get($icons, $icon-name);
+  font-family: quote("font-icon");
+  font-style: $style;
+  font-size: $size;
+}
+
+@mixin truncate-text() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin truncate-multiline-line($line: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin style-text($color: var(--color-black), $font-size: 14px, $font-weight: 400, $line-height: 22px) {
+  color: $color;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+}
+
+// Button
+
+@mixin button-hover($type-map) {
+  $hover-map: $type-map;
+  @if map-has-key($type-map, "hover") {
+    $hover-map: map-get($type-map, "hover");
+  }
+
+  &:not(.is-text) {
+    &:hover,
+    &:focus {
+      --el-button-hover-text-color: #{map-get($hover-map, "color")};
+      --el-button-hover-border-color: #{map-get($hover-map, "border-color")};
+      --el-button-hover-bg-color: #{map-get($hover-map, "background")};
+    }
+  }
+}
+
+@mixin button-pressed($type-map) {
+  $active-map: $type-map;
+
+  @if map-has-key($type-map, "pressed") {
+    $active-map: map-get($type-map, "pressed");
+  }
+
+  &:not(.is-text) {
+    &:active {
+      --el-button-active-text-color: #{map-get($active-map, "color")};
+      --el-button-active-border-color: #{map-get($active-map, "border-color")};
+      --el-button-active-bg-color: #{map-get($active-map, "background")};
+    }
+  }
+}
+
+@mixin button-disabled($type-map) {
+  &.is-disabled,
+  &.is-disabled:focus,
+  &.is-disabled:hover,
+  &.is-disabled:active {
+    $button-disabled-map: map-get($type-map, "disabled");
+    color: #{map-get($button-disabled-map, "color")};
+    background-color: #{map-get($button-disabled-map, "background")};
+    border-color: #{map-get($button-disabled-map, "border-color")};
+  }
+}
+
+@mixin button-type($type-map) {
+  --el-button-text-color: #{map-get($type-map, "color")};
+  --el-button-bg-color: #{map-get($type-map, "background")};
+  --el-button-border-color: #{map-get($type-map, "border-color")};
+
+  @include button-hover($type-map);
+  @include button-pressed($type-map);
+  @include button-disabled($type-map);
+
+  &.is-text {
+    --el-button-text-color: #{map-get($type-map, "color-text")};
+    border-color: transparent;
+  }
+}
+
+@mixin button-size($size-map) {
+  padding: #{map-get($size-map, "padding")};
+  font-size: #{map-get($size-map, "font-size")};
+  line-height: #{map-get($size-map, "line-height")};
+  border-radius: #{map-get($size-map, "border-radius")};
+  height: #{map-get($size-map, "height")};
+
+  &.is-circle {
+    $circle-map: map-get($size-map, "circle");
+    padding: #{map-get($circle-map, "padding")};
+    width: #{map-get($circle-map, "width")};
+  }
+
+  &.is-round {
+    $round-map: map-get($size-map, "round");
+    padding: #{map-get($round-map, "padding")};
+    width: #{map-get($round-map, "width")};
+  }
+}
+
+@mixin button-plain($type) {
+  @if map-has-key($button-plain, $type) {
+    $button-plain-map: map-get($button-plain, $type);
+
+    @include button-type($button-plain-map);
+    @include button-hover($button-plain-map);
+    @include button-pressed($button-plain-map);
+  }
+}

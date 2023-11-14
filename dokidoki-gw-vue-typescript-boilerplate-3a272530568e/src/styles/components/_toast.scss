@@ -1,0 +1,77 @@
+.el-notification {
+  padding: 0;
+  border: unset;
+  outline: unset;
+  width: auto;
+  max-width: 675px;
+  border-radius: 4px;
+
+  &--center {
+    &.left,
+    &.right {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__group {
+    width: 100%;
+    margin: 0;
+  }
+
+  .el-alert {
+    padding: 0;
+    margin: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+    %positionIconClose {
+      position: relative;
+      top: 0;
+      right: 0;
+    }
+
+    .is-customed {
+      border-radius: 4px;
+      color: var(--color-white);
+    }
+
+    &__content {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+
+      .el-icon {
+        width: 16px;
+        height: 16px;
+        color: inherit;
+
+        &:after {
+          @include font-icon("remove");
+          color: inherit;
+        }
+
+        svg {
+          display: none;
+        }
+      }
+    }
+
+    &__title {
+      @include style-text(inherit, 13px, 400, 22px);
+      text-align: left;
+    }
+
+    &__close-btn {
+      &.is-customed {
+        @extend %positionIconClose;
+        @include style-text(inherit, 14px, 500, 22px);
+        padding: 4px 8px;
+      }
+
+      @extend %positionIconClose;
+    }
+  }
+}

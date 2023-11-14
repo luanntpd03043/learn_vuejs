@@ -1,0 +1,60 @@
+.el-form {
+  width: 100%;
+}
+
+.el-form-item {
+  $root: &;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 6px;
+  margin-bottom: 20px;
+
+  &__label {
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+    height: auto;
+    margin-bottom: 8px;
+    @include style-text(var(--color-shark), 14px, 400, 22px);
+
+    &:before {
+      margin-left: 4px;
+    }
+  }
+
+  &__content {
+    line-height: inherit;
+    width: 100%;
+  }
+
+  &--default {
+    #{$root}__error {
+      padding-top: 4px;
+    }
+  }
+
+  &.is-error {
+    .input-component,
+    .dropdown-component {
+      &__label {
+        color: var(--color-froly);
+      }
+    }
+
+    #{$root}__content {
+      .el-input {
+        &__wrapper {
+          box-shadow: 0 0 0 1px var(--color-froly) inset;
+        }
+      }
+    }
+  }
+
+  &__error {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-top: 4px;
+    @include style-text(var(--color-froly), 12px, 400, 12px);
+  }
+}

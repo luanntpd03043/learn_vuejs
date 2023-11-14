@@ -1,0 +1,43 @@
+.el-radio {
+  --el-color-primary: var(--color-blue-zodiac);
+  --el-radio-input-width: 14px;
+  --el-radio-input-height: 14px;
+
+  $root: &;
+
+  &__inner {
+    &:after {
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  &--small {
+    --el-radio-input-width: 12px;
+    --el-radio-input-height: 12px;
+
+    #{$root}__inner {
+      &:after {
+        width: 4px;
+        height: 4px;
+      }
+    }
+  }
+}
+
+.el-radio-group {
+  &--vertical {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &--horizontal {
+    flex-direction: column;
+
+    .el-radio {
+      &:last-child {
+        margin-right: 32px;
+      }
+    }
+  }
+}

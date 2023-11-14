@@ -1,0 +1,191 @@
+$icon-sizes: 24, 28, 32;
+
+// Button disabled
+$button-disabled: (
+  "color": var(--color-manatee),
+  "background": var(--background-ghost),
+  "border-color": var(--color-ghost),
+);
+
+// Button type
+$button-type: (
+  "default": (
+    "color": var(--color-blue-zodiac),
+    "background": transparent,
+    "border-color": var(--color-blue-zodiac),
+    "color-text": var(--color-blue-zodiac),
+    "hover": (
+      "color": var(--color-white),
+      "background": var(--color-east-bay),
+      "border-color": var(--color-east-bay),
+    ),
+    "pressed": (
+      "color": var(--color-white),
+      "background": var(--background-blue-zodiac),
+      "border-color": var(--color-blue-zodiac),
+    ),
+    "disabled": (
+      "color": var(--color-white),
+      "background": var(--background-waikawa-gray),
+      "border-color": var(--color-waikawa-gray),
+    ),
+  ),
+  "primary": (
+    "color": var(--color-white),
+    "background": var(--background-blue-zodiac),
+    "border-color": var(--color-blue-zodiac),
+    "hover": (
+      "color": var(--color-white),
+      "background": var(--background-east-bay),
+      "border-color": var(--color-east-bay),
+    ),
+    "pressed": (
+      "color": var(--color-white),
+      "background": var(--background-blue-zodiac),
+      "border-color": var(--color-blue-zodiac),
+    ),
+    "disabled": $button-disabled,
+  ),
+  "danger": (
+    "color": var(--color-white),
+    "background": var(--background-froly),
+    "border-color": var(--color-froly),
+    "hover": (
+      "color": var(--color-white),
+      "background": var(--background-geraldine),
+      "border-color": var(--color-geraldine),
+    ),
+    "pressed": (
+      "color": var(--color-white),
+      "background": var(--background-fuzzy-wuzzy-brown),
+      "border-color": var(--color-fuzzy-wuzzy-brown),
+    ),
+    "disabled": $button-disabled,
+  ),
+  "warning": (
+    "color": var(--color-white),
+    "background": var(--background-tulip-tree),
+    "border-color": var(--color-tulip-tree),
+    "hover": (
+      "color": var(--color-white),
+      "background": var(--background-rob-roy),
+      "border-color": var(--color-rob-roy),
+    ),
+    "pressed": (
+      "color": var(--color-white),
+      "background": var(--background-copper),
+      "border-color": var(--color-copper),
+    ),
+    "disabled": $button-disabled,
+  ),
+  "success": (
+    "color": var(--color-white),
+    "background": var(--background-apple),
+    "border-color": var(--color-apple),
+    "hover": (
+      "color": var(--color-white),
+      "background": var(--background-feijoa),
+      "border-color": var(--color-feijoa),
+    ),
+    "pressed": (
+      "color": var(--color-white),
+      "background": var(--background-apple),
+      "border-color": var(--color-apple),
+    ),
+    "disabled": $button-disabled,
+  ),
+  "info": (
+    "color": var(--color-white),
+    "background": var(--background-oslo-gray),
+    "border-color": var(--color-oslo-gray),
+    "hover": (
+      "color": var(--color-white),
+      "background": var(--background-bombay),
+      "border-color": var(--color-bombay),
+    ),
+    "pressed": (
+      "color": var(--color-white),
+      "background": var(--background-rolling-stone),
+      "border-color": var(--color-rolling-stone),
+    ),
+    "disabled": $button-disabled,
+  ),
+);
+
+$button-plain: (
+  "info": (
+    "color": var(--color-oslo-gray),
+    "background": var(--background-white),
+    "border-color": var(--color-oslo-gray),
+    "disabled": $button-disabled,
+    "hover": (
+      "color": var(--color-white),
+      "background": var(--background-oslo-gray),
+      "border-color": var(--color-oslo-gray),
+    ),
+  ),
+  "primary": (
+    "color": var(--color-blue-zodiac),
+    "background": var(--background-athens-gray),
+    "border-color": var(--color-blue-zodiac),
+    "hover": (
+      "color": var(--color-white),
+      "background": var(--background-east-bay),
+    ),
+    "disabled": $button-disabled,
+  ),
+);
+
+// Button sizes
+$button-sizes: (
+  "default": (
+    "padding": 8px 12px,
+    "font-size": 14px,
+    "border-radius": 4px,
+    "font-weight": 500,
+    "line-height": 22px,
+    "height": 32px,
+    "circle": (
+      "padding": 8px,
+      "width": 32px,
+    ),
+    "round": (
+      "padding": 8px 12px,
+    ),
+  ),
+  "small": (
+    "padding": 4px 10px,
+    "font-size": 12px,
+    "font-weight": 500,
+    "border-radius": 4px,
+    "line-height": 20px,
+    "height": 28px,
+    "circle": (
+      "padding": 4px,
+      "width": 28px,
+    ),
+    "round": (
+      "padding": 4px 10px,
+      "border-radius": 24px,
+    ),
+  ),
+  "large": (
+    "padding": 8px 12px,
+    "font-size": 14px,
+    "border-radius": 4px,
+    "font-weight": 500,
+    "line-height": 22px,
+    "height": 40px,
+    "circle": (
+      "padding": 8px,
+      "width": 40px,
+    ),
+    "round": (
+      "padding": 8px 12px,
+    ),
+  ),
+);
+
+// Box shadow
+
+$box-shadow: 0px 12px 32px 4px var(--background-transparent1), 0 1px 4px var(--background-transparent2);
